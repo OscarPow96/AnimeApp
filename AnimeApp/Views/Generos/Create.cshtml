@@ -1,0 +1,112 @@
+﻿@model AnimeApp.Models.Genero
+
+@{
+    ViewData["Title"] = "Crear Género";
+}
+
+<div class="glass-container">
+    <div class="glass-card">
+        <h1 class="glass-title">
+            <i class="fas fa-plus-circle"></i> @ViewData["Title"]
+        </h1>
+
+        <div class="glass-form-container">
+            <form asp-action="Create" class="glass-form">
+                <div asp-validation-summary="ModelOnly" class="text-danger glass-validation"></div>
+
+                <div class="form-group glass-form-group">
+                    <label asp-for="Nombre" class="glass-label">
+                        <i class="fas fa-tag"></i> Nombre del Género
+                    </label>
+                    <input asp-for="Nombre" class="glass-input" />
+                    <span asp-validation-for="Nombre" class="glass-validation"></span>
+                </div>
+
+                <div class="form-group text-center mt-4">
+                    <button type="submit" class="btn btn-glass btn-lg">
+                        <i class="fas fa-save"></i> Crear
+                    </button>
+                    <a asp-action="Index" class="btn btn-glass-outline btn-lg ml-3">
+                        <i class="fas fa-arrow-left"></i> Volver
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<style>
+    .glass-form-container {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .glass-form {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 15px;
+        padding: 2rem;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .glass-form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .glass-label {
+        color: white;
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+        display: block;
+    }
+
+        .glass-label i {
+            margin-right: 10px;
+            color: #bbdefb;
+        }
+
+    .glass-input {
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 10px;
+        padding: 0.75rem 1rem;
+        width: 100%;
+        color: #363a43;
+        transition: all 0.3s ease;
+    }
+
+        .glass-input:focus {
+            background: white;
+            box-shadow: 0 0 0 0.25rem rgba(187, 222, 251, 0.25);
+            border-color: #bbdefb;
+        }
+
+    .glass-validation {
+        color: #ffb74d;
+        font-size: 0.9rem;
+        margin-top: 0.25rem;
+        display: block;
+    }
+
+    .btn-glass-outline {
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        color: white;
+        border-radius: 10px;
+        padding: 0.5rem 1.5rem;
+        transition: all 0.3s ease;
+    }
+
+        .btn-glass-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+</style>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+}

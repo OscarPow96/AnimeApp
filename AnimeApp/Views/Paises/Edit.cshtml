@@ -1,0 +1,189 @@
+﻿@model AnimeApp.Models.Pais
+
+@{
+    ViewData["Title"] = "Editar País";
+}
+
+<div class="glass-container">
+    <div class="glass-card">
+        <h1 class="glass-title">
+            <i class="fas fa-globe-americas"></i> @ViewData["Title"]
+        </h1>
+
+        <div class="glass-form-container">
+            <form asp-action="Edit" class="glass-form">
+                <div asp-validation-summary="ModelOnly" class="text-danger glass-validation"></div>
+                <input type="hidden" asp-for="Id" />
+
+                <div class="form-group glass-form-group">
+                    <label asp-for="Nombre" class="glass-label">
+                        <i class="fas fa-tag"></i> Nombre del País
+                    </label>
+                    <input asp-for="Nombre" class="glass-input" />
+                    <span asp-validation-for="Nombre" class="glass-validation"></span>
+                </div>
+
+                <div class="form-group text-center mt-4">
+                    <button type="submit" class="btn btn-glass btn-lg">
+                        <i class="fas fa-save"></i> Guardar
+                    </button>
+                    <a asp-action="Index" class="btn btn-glass-outline btn-lg ml-3">
+                        <i class="fas fa-arrow-left"></i> Volver
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<style>
+    .glass-container {
+        background: linear-gradient(135deg, #363a43, #4b4f58, #60646b, #818488);
+        background-size: 400% 400%;
+        animation: gradient 15s ease infinite;
+        min-height: calc(100vh - 150px);
+        padding: 20px;
+    }
+
+    .glass-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 20px;
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37), 0 0 20px rgba(255, 255, 255, 0.3);
+        padding: 2rem;
+        margin: 0 auto;
+        max-width: 800px;
+    }
+
+    .glass-title {
+        color: white;
+        text-align: center;
+        margin-bottom: 1.5rem;
+        font-size: 2.5rem;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+
+        .glass-title i {
+            margin-right: 15px;
+            color: #bbdefb;
+        }
+
+    .glass-form-container {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .glass-form {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 15px;
+        padding: 2rem;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .glass-form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .glass-label {
+        color: white;
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+        display: block;
+    }
+
+        .glass-label i {
+            margin-right: 10px;
+            color: #bbdefb;
+        }
+
+    .glass-input {
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 10px;
+        padding: 0.75rem 1rem;
+        width: 100%;
+        color: #363a43;
+        transition: all 0.3s ease;
+    }
+
+        .glass-input:focus {
+            background: white;
+            box-shadow: 0 0 0 0.25rem rgba(187, 222, 251, 0.25);
+            border-color: #bbdefb;
+        }
+
+    .glass-validation {
+        color: #ffb74d;
+        font-size: 0.9rem;
+        margin-top: 0.25rem;
+        display: block;
+    }
+
+    .btn-glass {
+        background: rgba(54, 58, 67, 0.8);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: white;
+        border-radius: 10px;
+        padding: 0.5rem 1.5rem;
+        transition: all 0.3s ease;
+    }
+
+        .btn-glass:hover {
+            background: rgba(97, 100, 107, 0.9);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            color: white;
+        }
+
+    .btn-glass-outline {
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        color: white;
+        border-radius: 10px;
+        padding: 0.5rem 1.5rem;
+        transition: all 0.3s ease;
+    }
+
+        .btn-glass-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+    @@keyframes gradient {
+        0% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    @@media (max-width: 768px) {
+        .glass-card {
+            padding: 1.5rem;
+        }
+
+        .glass-title {
+            font-size: 2rem;
+        }
+
+        .glass-form {
+            padding: 1.5rem;
+        }
+    }
+</style>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+}

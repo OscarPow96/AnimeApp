@@ -1,0 +1,236 @@
+﻿@model IEnumerable<AnimeApp.Models.Pelicula>
+
+@{
+    ViewData["Title"] = "Lista de Películas";
+}
+
+<div class="glass-container">
+    <div class="glass-card">
+        <h1 class="glass-title">
+            <i class="fas fa-film"></i> @ViewData["Title"]
+        </h1>
+
+        <div class="text-end mb-4">
+            <a asp-action="Create" class="btn btn-glass">
+                <i class="fas fa-plus-circle"></i> Nueva Película
+            </a>
+        </div>
+
+        <div class="glass-table-container">
+            <table class="glass-table">
+                <thead>
+                    <tr>
+                        <th><i class="fas fa-heading"></i> Título</th>
+                        <th><i class="fas fa-align-left"></i> Reseña</th>
+                        <th><i class="fas fa-image"></i> Portada</th>
+                        <th><i class="fas fa-video"></i> Trailer</th>
+                        <th><i class="fas fa-tag"></i> Género</th>
+                        <th><i class="fas fa-globe"></i> País</th>
+                        <th><i class="fas fa-user-tie"></i> Director</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.Titulo)</td>
+                            <td class="text-truncate" style="max-width: 200px;">@Html.DisplayFor(modelItem => item.Resena)</td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(item.ImagenPortadaUrl))
+                                {
+                                    <img src="@item.ImagenPortadaUrl" alt="Portada" style="max-width: 80px; border-radius: 5px;">
+                                }
+                            </td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(item.CodigoTrailer))
+                                {
+                                    <a href="https://youtu.be/@item.CodigoTrailer" target="_blank" class="btn btn-glass-sm">
+                                        <i class="fab fa-youtube"></i>
+                                    </a>
+                                }
+                            </td>
+                            <td>@Html.DisplayFor(modelItem => item.Genero.Nombre)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Pais.Nombre)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Director.Apellido)</td>
+                            <td class="action-buttons">
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-glass-sm" title="Editar">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-glass-sm" title="Detalles">
+                                    <i class="fas fa-info-circle"></i>
+                                </a>
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-glass-sm btn-glass-danger" title="Eliminar">
+                                    <i class="fas fa-trash-alt"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<style>
+    .glass-container {
+        background: linear-gradient(135deg, #363a43, #4b4f58, #60646b, #818488);
+        background-size: 400% 400%;
+        animation: gradient 15s ease infinite;
+        min-height: calc(100vh - 150px);
+        padding: 20px;
+    }
+
+    .glass-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 20px;
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37), 0 0 20px rgba(255, 255, 255, 0.3);
+        padding: 2rem;
+        margin: 0 auto;
+        max-width: 1200px;
+    }
+
+    .glass-title {
+        color: white;
+        text-align: center;
+        margin-bottom: 1.5rem;
+        font-size: 2.5rem;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+
+        .glass-title i {
+            margin-right: 15px;
+            color: #bbdefb;
+        }
+
+    .glass-table-container {
+        overflow-x: auto;
+        border-radius: 15px;
+    }
+
+    .glass-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(5px);
+        border-radius: 15px;
+        overflow: hidden;
+    }
+
+        .glass-table thead {
+            background: rgba(54, 58, 67, 0.7);
+            color: white;
+        }
+
+        .glass-table th {
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+            .glass-table th i {
+                margin-right: 8px;
+                color: #bbdefb;
+            }
+
+        .glass-table td {
+            padding: 1rem;
+            color: white;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+            .glass-table td i {
+                margin-right: 10px;
+                color: #e3f2fd;
+            }
+
+        .glass-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .glass-table tr:hover td {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+    .btn-glass {
+        background: rgba(54, 58, 67, 0.8);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: white;
+        border-radius: 10px;
+        padding: 0.5rem 1.5rem;
+        transition: all 0.3s ease;
+    }
+
+        .btn-glass:hover {
+            background: rgba(97, 100, 107, 0.9);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            color: white;
+        }
+
+    .btn-glass-sm {
+        background: rgba(54, 58, 67, 0.6);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: white;
+        border-radius: 8px;
+        padding: 0.3rem 0.6rem;
+        margin: 0 0.2rem;
+        transition: all 0.2s ease;
+    }
+
+        .btn-glass-sm:hover {
+            background: rgba(97, 100, 107, 0.8);
+            transform: translateY(-1px);
+        }
+
+    .btn-glass-danger:hover {
+        background: rgba(220, 53, 69, 0.8);
+    }
+
+    .action-buttons {
+        white-space: nowrap;
+    }
+
+    @@keyframes gradient {
+        0% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    @@media (max-width: 768px) {
+        .glass-card {
+            padding: 1.5rem;
+        }
+
+        .glass-title {
+            font-size: 2rem;
+        }
+
+        .glass-table th,
+        .glass-table td {
+            padding: 0.75rem;
+        }
+
+            .glass-title i,
+            .glass-table th i,
+            .glass-table td i {
+                margin-right: 5px;
+            }
+    }
+</style>
+
+
+@section Scripts {
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+}

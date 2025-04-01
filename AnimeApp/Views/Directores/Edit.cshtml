@@ -1,0 +1,62 @@
+﻿@model AnimeApp.Models.Director
+
+@{
+    ViewData["Title"] = "Editar Director";
+}
+
+<div class="glass-container">
+    <div class="glass-card">
+        <h1 class="glass-title">
+            <i class="fas fa-user-edit"></i> @ViewData["Title"]
+        </h1>
+
+        <div class="glass-form-container">
+            <form asp-action="Edit" class="glass-form">
+                <div asp-validation-summary="ModelOnly" class="text-danger glass-validation"></div>
+                <input type="hidden" asp-for="Id" />
+
+                <div class="form-group glass-form-group">
+                    <label asp-for="Nombre" class="glass-label">
+                        <i class="fas fa-signature"></i> Nombre
+                    </label>
+                    <input asp-for="Nombre" class="glass-input" />
+                    <span asp-validation-for="Nombre" class="glass-validation"></span>
+                </div>
+
+                <div class="form-group glass-form-group">
+                    <label asp-for="Apellido" class="glass-label">
+                        <i class="fas fa-signature"></i> Apellido
+                    </label>
+                    <input asp-for="Apellido" class="glass-input" />
+                    <span asp-validation-for="Apellido" class="glass-validation"></span>
+                </div>
+
+                <div class="form-group glass-form-group">
+                    <label asp-for="PaisId" class="glass-label">
+                        <i class="fas fa-globe"></i> País
+                    </label>
+                    <select asp-for="PaisId" class="glass-input" asp-items="ViewBag.PaisId">
+                        <option value="">Seleccione un país</option>
+                    </select>
+                    <span asp-validation-for="PaisId" class="glass-validation"></span>
+                </div>
+
+                <div class="form-group text-center mt-4">
+                    <button type="submit" class="btn btn-glass btn-lg">
+                        <i class="fas fa-save"></i> Guardar
+                    </button>
+                    <a asp-action="Index" class="btn btn-glass-outline btn-lg ml-3">
+                        <i class="fas fa-arrow-left"></i> Volver
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+}

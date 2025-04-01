@@ -1,0 +1,29 @@
+# Archivos de compilación y dependencias
+bin/
+obj/
+.vs/
+out/
+*.suo
+*.user
+*.cache
+*.pdb
+
+# Archivos de configuración sensibles
+appsettings*.json   # Excluye TODOS los appsettings (excepto el ejemplo)
+!appsettings.Example.json  # Mantén este archivo
+secrets.json
+*.pubxml
+*.publishsettings
+
+# Logs y archivos temporales
+logs/
+*.log
+*.tmp
+
+# Editor/IDE
+.idea/
+.vscode/
+*.swp
+
+# Azure
+.azure/
